@@ -1,6 +1,5 @@
 package com.example.tripplirary_project
 
-import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -15,6 +14,7 @@ class MainActivity : AppCompatActivity() {
         val HOME_FRAGMENT = "HomeFragment"
         val POST_FRAGMENT = "PostFragment"
         val PLAN_FRAGMENT = "PlanFragment"
+        val PLAN_ADD_FRAGMENT = "PlanAddFragment"
         val SHARE_FRAGMENT = "ShareFragment"
         val MY_FRAGMENT = "MyFragment"
     }
@@ -65,6 +65,9 @@ class MainActivity : AppCompatActivity() {
             }
             MY_FRAGMENT -> {
                 MyFragment()
+            }
+            PLAN_ADD_FRAGMENT -> {
+                PlanAddFragment()
             }
             else -> {
                 Fragment()

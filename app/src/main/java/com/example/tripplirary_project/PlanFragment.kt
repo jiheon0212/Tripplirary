@@ -20,7 +20,14 @@ class PlanFragment : Fragment() {
         mainActivity = activity as MainActivity
 
         fragmentPlanBinding.run {
-
+            tbPlan.run {
+                title = "Pre_Plan"
+                inflateMenu(R.menu.plan_menu)
+                setOnMenuItemClickListener {
+                    mainActivity.replaceFragment(MainActivity.PLAN_ADD_FRAGMENT ,true, true)
+                    false
+                }
+            }
         }
 
         return fragmentPlanBinding.root
