@@ -25,21 +25,11 @@ class MainActivity : AppCompatActivity() {
             bnViewMain.run {
                 setOnItemSelectedListener {
                     when (it.itemId){
-                        R.id.itemHome -> {
-                            replaceFragment(HOME_FRAGMENT, false ,false)
-                        }
-                        R.id.itemPost -> {
-                            replaceFragment(POST_FRAGMENT, false ,false)
-                        }
-                        R.id.itemPlan -> {
-                            replaceFragment(PLAN_FRAGMENT, false ,false)
-                        }
-                        R.id.itemShare -> {
-                            replaceFragment(SHARE_FRAGMENT, false ,false)
-                        }
-                        R.id.itemMy -> {
-                            replaceFragment(MY_FRAGMENT, false ,false)
-                        }
+                        R.id.itemHome -> replaceFragment(HOME_FRAGMENT, false ,false)
+                        R.id.itemPost -> replaceFragment(POST_FRAGMENT, false ,false)
+                        R.id.itemPlan -> replaceFragment(PLAN_FRAGMENT, false ,false)
+                        R.id.itemShare -> replaceFragment(SHARE_FRAGMENT, false ,false)
+                        R.id.itemMy -> replaceFragment(MY_FRAGMENT, false ,false)
                     }
                     true
                 }
@@ -51,27 +41,15 @@ class MainActivity : AppCompatActivity() {
     fun replaceFragment(name: String, addToBackStack: Boolean, animate: Boolean){
         val fragmentTransaction = supportFragmentManager.beginTransaction()
         var newFragment = when(name){
-            HOME_FRAGMENT -> {
-                HomeFragment()
-            }
-            POST_FRAGMENT -> {
-                PostFragment()
-            }
-            PLAN_FRAGMENT -> {
-                PlanFragment()
-            }
-            SHARE_FRAGMENT -> {
-                ShareFragment()
-            }
-            MY_FRAGMENT -> {
-                MyFragment()
-            }
-            PLAN_ADD_FRAGMENT -> {
-                PlanAddFragment()
-            }
-            else -> {
-                Fragment()
-            }
+            HOME_FRAGMENT -> HomeFragment()
+            POST_FRAGMENT -> PostFragment()
+            PLAN_FRAGMENT -> PlanFragment()
+            SHARE_FRAGMENT -> ShareFragment()
+            MY_FRAGMENT -> MyFragment()
+            PLAN_ADD_FRAGMENT -> PlanAddFragment()
+
+            else -> Fragment()
+
         }
 
         fragmentTransaction.replace(R.id.fcvMain, newFragment)
