@@ -5,55 +5,78 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.TextView
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.example.tripplirary_project.databinding.FragmentPostBinding
+import com.example.tripplirary_project.databinding.PostRowBinding
+import org.w3c.dom.Text
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [PostFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class PostFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
-
+    lateinit var fragmentPostBinding: FragmentPostBinding
+    lateinit var mainActivity: MainActivity
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_post, container, false)
-    }
+        fragmentPostBinding = FragmentPostBinding.inflate(layoutInflater)
+        mainActivity = activity as MainActivity
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment PostFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            PostFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+        fragmentPostBinding.run {
+            tbPost.run {
+                title = "Pre_Post"
+                inflateMenu(R.menu.post_menu)
+                setOnMenuItemClickListener {
+                    when(it.itemId){
+                        R.id.postAdd -> mainActivity.replaceFragment(MainActivity.POST_ADD_FRAGMENT, true, true)
+                        R.id.postSearch -> {
+
+                        }
+                    }
+                    false
                 }
             }
+            recyclerPost.run {
+                adapter = PostAdapter()
+                layoutManager = LinearLayoutManager(mainActivity)
+            }
+        }
+
+        return fragmentPostBinding.root
+    }
+    inner class PostAdapter: RecyclerView.Adapter<PostAdapter.PostHolder>(){
+        inner class PostHolder(postRowBinding: PostRowBinding): RecyclerView.ViewHolder(postRowBinding.root){
+            var nickname: TextView
+            var date: TextView
+            var text: TextView
+            init {
+                nickname = postRowBinding.tvPostNickname
+                date = postRowBinding.tvPostDate
+                text = postRowBinding.tvPostText
+
+                postRowBinding.btnLike.setOnClickListener {
+
+                }
+                postRowBinding.btnComment.setOnClickListener {
+
+                }
+            }
+        }
+        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PostHolder {
+            val postRowBinding = PostRowBinding.inflate(layoutInflater)
+            val viewHolder = PostHolder(postRowBinding)
+
+            return viewHolder
+        }
+        override fun getItemCount(): Int {
+            return 5
+        }
+        override fun onBindViewHolder(holder: PostHolder, position: Int) {
+            holder.nickname.text = "Leejiheon"
+            holder.date.text = "23.07.26 15:16"
+            holder.text.text = "TestTestTestTestTestTestTestTestTestTestTestTestTestTest"
+        }
     }
 }

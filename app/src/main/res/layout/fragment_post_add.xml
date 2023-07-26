@@ -1,22 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".PostFragment" >
+    tools:context=".PostAddFragment" >
 
     <com.google.android.material.appbar.MaterialToolbar
-        android:id="@+id/tbPost"
+        android:id="@+id/tbPostAdd"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="?attr/colorPrimary"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerPost"
+    <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="8dp" />
+        android:layout_marginTop="8dp"
+        app:endIconMode="clear_text"
+        app:startIconDrawable="@android:drawable/ic_menu_edit">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Write your favorite story about today"
+            android:inputType="textMultiLine" />
+
+    </com.google.android.material.textfield.TextInputLayout>
 </LinearLayout>
