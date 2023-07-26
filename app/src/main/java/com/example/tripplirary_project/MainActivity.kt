@@ -49,7 +49,6 @@ class MainActivity : AppCompatActivity() {
             PLAN_ADD_FRAGMENT -> PlanAddFragment()
 
             else -> Fragment()
-
         }
 
         fragmentTransaction.replace(R.id.fcvMain, newFragment)
